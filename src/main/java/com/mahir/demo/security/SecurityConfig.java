@@ -72,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login", "/signup").permitAll()   // anybody can have access to the login page
+                .antMatchers("/login", "/signup", "/").permitAll()   // anybody can have access to the login page
                 .antMatchers("/admin/**").hasRole("ADMIN")      // the url that contains admin can only be accessed by admins
                 .antMatchers("/**").hasAnyRole("ADMIN", "USER") // the rest of the pages can be accessed by any logged-in user
                 .anyRequest().authenticated()

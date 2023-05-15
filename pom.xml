@@ -14,7 +14,8 @@
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>19</java.version>
+		<java.version>11</java.version>
+		<skipUnitTests>false</skipUnitTests>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -76,6 +77,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
+				<skipUnitTests>false</skipUnitTests>
 				<db_host_address>localhost:3306</db_host_address>
 				<db_name>spring_mns</db_name>
 				<db_username>root</db_username>
@@ -84,13 +86,14 @@
 				<sql_filename>mysql</sql_filename>
 				<db_data_init>true</db_data_init>
 				<db_init_mode>always</db_init_mode>
-				<upload_folder>C:\\Users\\k\\Desktop\\MNS\\DEVLOG\\java-2\\projets\\spring-demo\\images</upload_folder>
+				<upload_folder>A changer dans le fichier settings.xml C:\\Users\\k\\Desktop\\MNS\\DEVLOG\\java-2\\projets\\spring-demo\\images</upload_folder>
 			</properties>
 		</profile>
 		<profile>
 			<id>prod</id>
 			<properties>
-				<db_host_address>172.18.0.2:3306</db_host_address>
+				<skipUnitTests>true</skipUnitTests>
+				<db_host_address>172.18.0.4:3306</db_host_address>
 				<db_name>spring_mns_23</db_name>
 				<db_username>root</db_username>
 				<db_password>generalbol</db_password>
@@ -111,7 +114,19 @@
 			</resource>
 		</resources>
 		<plugins>
-
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId >maven-surefire-plugin</artifactId>
+				<version>3.0.0-M6</version>
+				<configuration>
+					<skipTests>${skipUnitTests}</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+			</plugin>
 		</plugins>
 	</build>
 

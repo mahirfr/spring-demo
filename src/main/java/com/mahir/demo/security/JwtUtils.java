@@ -1,6 +1,7 @@
 package com.mahir.demo.security;
 
 import io.jsonwebtoken.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -9,6 +10,9 @@ import java.util.Map;
 @Service
 public class JwtUtils {
     public String generateJwt(MyUserDetails myUserDetails) {
+
+//        @Value("${secret_key}")
+//        private String secret_key;
 
         Map<String, Object> data = new HashMap<>();
         data.put("firstName", myUserDetails.getUser().getFirstName());
